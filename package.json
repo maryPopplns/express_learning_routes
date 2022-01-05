@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "git": "git add . && git commit && git push origin $(git rev-parse --abbrev-ref HEAD) && echo '\n' && echo $(tput setaf 2)'commited: ' $(tput setaf 1)$(date) && echo '\n'"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/maryPopplns/express_learning_routes/issues"
   },
-  "homepage": "https://github.com/maryPopplns/express_learning_routes#readme"
+  "homepage": "https://github.com/maryPopplns/express_learning_routes#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "forecast.io": "^0.0.11",
+    "zippity-do-dah": "^0.0.3"
+  }
 }
