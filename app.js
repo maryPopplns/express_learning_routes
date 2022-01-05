@@ -20,14 +20,15 @@ app.get(/^\/(\d{5})$/, function (req, res, next) {
   let ZIPCODE = req.url.slice(1);
   const options = {
     hostname: 'api.openweathermap.org',
-    path: `data/2.5/weather?zip=${ZIPCODE}&appid=${process.env.API_KEY}`,
+    path: `/data/2.5/weather?q=${ZIPCODE}&appid=${process.env.API_KEY}`,
     method: 'GET',
   };
 
   const REQUEST = https.request(options, (res) => {
     console.log(`statusCode: ${res.statusCode}`);
 
-    REQUEST.on('data', (d) => {
+    res.on('data', (d) => {
+      console.log(d);
       process.stdout.write(d);
     });
   });
@@ -36,10 +37,12 @@ app.get(/^\/(\d{5})$/, function (req, res, next) {
     console.error(error);
   });
 
+  REQUEST.end();
   res.end();
 });
 
 app.use(function (req, res) {
   res.status(404).render('404');
 });
+
 app.listen(3000);
