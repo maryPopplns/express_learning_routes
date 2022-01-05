@@ -24,12 +24,14 @@ app.get(/^\/(\d{5})$/, function (req, res, next) {
     method: 'GET',
   };
 
-  const REQUEST = https.request(options, (res) => {
-    console.log(`statusCode: ${res.statusCode}`);
-
-    res.on('data', (d) => {
-      console.log(d);
-      process.stdout.write(d);
+  const REQUEST = https.request(options, (res1) => {
+    res1.on('data', (d) => {
+      const PARSED = JSON.parse(d);
+      const FAHRENHEIT = ((PARSED.main.temp - 273.15) * (9 / 5) + 32).toFixed(
+        2
+      );
+      const CELSIUS = (PARSED.main.temp - 273.15).toFixed(2);
+      res.json({ ZIPCODE, FAHRENHEIT, CELSIUS });
     });
   });
 
@@ -38,7 +40,6 @@ app.get(/^\/(\d{5})$/, function (req, res, next) {
   });
 
   REQUEST.end();
-  res.end();
 });
 
 app.use(function (req, res) {
