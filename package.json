@@ -19,8 +19,6 @@
   "homepage": "https://github.com/maryPopplns/express_learning_routes#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.2",
-    "forecast.io": "^0.0.11",
-    "zippity-do-dah": "^0.0.3"
+    "express": "^4.17.2"
   }
 }
